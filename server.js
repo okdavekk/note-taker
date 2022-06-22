@@ -2,10 +2,10 @@ const express = require('express');
 const path = require('path');
 const fs = require('fs');
 const util = require('util');
-const PORT = 3001;
+const PORT = process.env.PORT || 3001;
 const database = require('./db/db.json');
 const uuid = require('./helpers/uuid.js');
-const { addAbortSignal } = require('stream');
+// const { addAbortSignal } = require('stream');
 
 const app = express();
 
@@ -14,12 +14,12 @@ app.use(express.json());
 app.use(express.static('public'));
 
 //Gets
-app.get('/', (req, res) =>
-    res.sendFile(path.join(_dirname, '/public/assets/index.html'))
+app.get('/api/index', (req, res) =>
+    res.sendFile(path.join(_dirname, '/public/index.html'))
 );
 
-app.get('/notes', (req, res) =>
-    res.sendFile(path.join(_dirname, '/public/assets/notes.html'))
+app.get('/api/notes', (req, res) =>
+    res.sendFile(path.join(_dirname, '/public/notes.html'))
 );
 
 
