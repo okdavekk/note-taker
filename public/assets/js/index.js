@@ -1,7 +1,7 @@
-const express = require('express');
+// const express = require('express');
 
-const PORT = 3001;
-const app = express();
+// const PORT = 3001;
+// const app = express();
 
 let noteTitle;
 let noteText;
