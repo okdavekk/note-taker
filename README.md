@@ -43,7 +43,7 @@ WHEN I click on the Write icon in the navigation at the top of the page THEN I a
 
 ## Visuals
 ### Mock-Up
-The following images show the web application's appearance and functionality:
+The following images shows the web application's intended appearance and functionality:
 
 ![Existing notes are listed in the left-hand column with empty fields on the right-hand side for the new note’s title and text.](./Assets/11-express-homework-demo-01.png)
 

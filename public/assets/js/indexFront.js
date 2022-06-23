@@ -43,17 +43,17 @@ const saveNote = (note) =>
     },
     body: JSON.stringify(note),
   })
-    .then((response) => response.json())
-    .then((data) => {
-      alert(data);
-      // createCard(tip);
-    })
-    .catch((error) => {
-      console.error('Error:', error);
-    });
+//     .then((response) => response.json())
+//     .then((data) => {
+//       alert(data);
+//       // createCard(tip);
+//     })
+//     .catch((error) => {
+//       console.error('Error:', error);
+//     });
 
-// When the page loads, get all the tips
-// saveNote().then(data) => data.forEach(note)
+// // When the page loads, get all the tips
+// // saveNote().then(data) => data.forEach(note)
 
 //Bonus
 const deleteNote = (id) =>
@@ -134,7 +134,7 @@ const handleRenderSaveBtn = () => {
 const renderNoteList = async (notes) => {
   let jsonNotes = await notes.json();
   console.log(`These Are all the Note" \n ${jsonNotes}`)
-  if (window.location.pathname === '/notes') {
+  if (window.location.pathname === '/notes.html') {
     noteList.forEach((el) => (el.innerHTML = ''));
   }
 

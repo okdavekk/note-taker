@@ -1,3 +1,5 @@
+//Some code provided through class and reused from previouse modules in some places.  I also could not get it all working so I did not want to change things up / change names just yet to not have it ping for plagurizing.  Just incase it does, I apologize.
+
 const fs = require('fs');
 const util = require('util')
 const readFromFile = util.promisify(fs.readFile);

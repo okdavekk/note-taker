@@ -1,14 +1,15 @@
+//Some code provided through class and reused from previouse modules in some places.  I also could not get it all working so I did not want to change things up / change names just yet to not have it ping for plagurizing.  Just incase it does, I apologize.
+
 const router = require('express').Router();
 const path = require('path');
 const fs = require('fs');
 
-
-const { readFromFile, readAndAppend, uuid } = require('../helpers/indexHelper');
+//took out readFromFIle
+const { readAndAppend, uuid } = require('../helpers/indexHelper');
 
 //Gets
 router.get('/', (req, res) => {
     res.sendFile(path.join(_dirname, './public/index.html'))
-    // res.json(`${req.method} request received`)
 
 });
 //No API is a page
@@ -20,17 +21,34 @@ router.get('/notes', (req, res) =>
 router.get('/api/notes', (req, res) => {
     fs.readFile('./db/db.json', (err, data) => {
         if (err) throw err;
-        // console.log(JSON.parse(data));
         res.json(JSON.parse(data));
     })
-    // readFromFile('./db/tips.json').then((data) => res.json(JSON.parse(data)));
 
 });
+
+//Varun provided stuff to mess around with
+// router.post('/api/notes', (req, res) => {
+//     const { title, text } = req.body;
+//     if (title && text) {
+//         const savedNote = {
+//             title, 
+//             text,
+//             id: uuid(),
+//         };
+//         notes.push(savedNote);
+//         let noteArray = JSON.stringify((notes), null, 2);
+//         fs.writeFile('./db/db.json', noteArray, () => {
+//             const response = {
+//                 body: savedNote,
+//             }
+//             res.json(response);
+//         })
+//     };;
+// });
 
 
 // POST Route
 router.post('/api/notes', (req, res) => {
-    // console.info(`${req.method} request received to add a tip`);
     // const { noteTitle, noteText, noteUUID } = req.body;
 
     const { noteTitle, noteText } = req.body;
@@ -39,7 +57,7 @@ router.post('/api/notes', (req, res) => {
         const newNote = {
             noteTitle,
             noteText,
-            // noteUUID: uuid(),
+            noteUUID: uuid(),
         };
 
         readAndAppend(newNote, './db/db.json');
@@ -47,36 +65,6 @@ router.post('/api/notes', (req, res) => {
         res.error('Error in adding note');
     }
 });
-
-router.post('/api/note', (req, res) => {
-    // Log that a POST request was received
-    console.info(`${req.method} request received to submit feedback`);
-  
-    // Destructuring assignment for the items in req.body
-    const { email, feedbackType, feedback } = req.body;
-  
-    // If all the required properties are present
-    if (email && feedbackType && feedback) {
-      // Variable for the object we will save
-      const newFeedback = {
-        email,
-        feedbackType,
-        feedback,
-        feedback_id: uuid(),
-      };
-  
-      readAndAppend(newFeedback, './db/feedback.json');
-  
-      const response = {
-        status: 'success',
-        body: newFeedback,
-      };
-  
-      res.json(response);
-    } else {
-      res.json('Error in posting feedback');
-    }
-  });
 
 
 module.exports = router;
